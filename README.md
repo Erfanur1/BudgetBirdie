@@ -1,4 +1,4 @@
-# ExpenseTracker
+# BudgetBirdie
 
 **Personal Expense Tracker for Students**  
 **Persona:** Alice, 25-year-old grad student on a tight budget  
