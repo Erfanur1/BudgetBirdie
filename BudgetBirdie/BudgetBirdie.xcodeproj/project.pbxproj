@@ -6,6 +6,17 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8EE3093C2DD5E8A100FEF35A /* BudgetBirdieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE3093B2DD5E8A100FEF35A /* BudgetBirdieApp.swift */; };
+		8EE309422DD5E8A300FEF35A /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE309412DD5E8A300FEF35A /* Persistence.swift */; };
+		8EE309452DD5E8A300FEF35A /* BudgetBirdie.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8EE309432DD5E8A300FEF35A /* BudgetBirdie.xcdatamodeld */; };
+		8EE309782DD6142500FEF35A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE309772DD6142500FEF35A /* ContentView.swift */; };
+		8EE309B22DD626F800FEF35A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EE309B12DD626F800FEF35A /* Assets.xcassets */; };
+		8EE309B82DD6335D00FEF35A /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE309B72DD6335D00FEF35A /* WelcomeView.swift */; };
+		8EE309BA2DD654A800FEF35A /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE309B92DD654A800FEF35A /* ThemeManager.swift */; };
+		8EE309BE2DD65A2300FEF35A /* DataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE309BD2DD65A2300FEF35A /* DataModels.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		8EE3094B2DD5E8A400FEF35A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -25,16 +36,19 @@
 
 /* Begin PBXFileReference section */
 		8EE309382DD5E8A100FEF35A /* BudgetBirdie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetBirdie.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EE3093B2DD5E8A100FEF35A /* BudgetBirdieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetBirdieApp.swift; sourceTree = "<group>"; };
+		8EE309412DD5E8A300FEF35A /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		8EE309442DD5E8A300FEF35A /* BudgetBirdie.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BudgetBirdie.xcdatamodel; sourceTree = "<group>"; };
 		8EE3094A2DD5E8A400FEF35A /* BudgetBirdieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudgetBirdieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EE309542DD5E8A400FEF35A /* BudgetBirdieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudgetBirdieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EE309772DD6142500FEF35A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8EE309B12DD626F800FEF35A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8EE309B72DD6335D00FEF35A /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		8EE309B92DD654A800FEF35A /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		8EE309BD2DD65A2300FEF35A /* DataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		8EE3093A2DD5E8A100FEF35A /* BudgetBirdie */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = BudgetBirdie;
-			sourceTree = "<group>";
-		};
 		8EE3094D2DD5E8A400FEF35A /* BudgetBirdieTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = BudgetBirdieTests;
@@ -43,6 +57,21 @@
 		8EE309572DD5E8A400FEF35A /* BudgetBirdieUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = BudgetBirdieUITests;
+			sourceTree = "<group>";
+		};
+		8EE3096D2DD612AD00FEF35A /* Models  */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Models ";
+			sourceTree = "<group>";
+		};
+		8EE3096E2DD612C200FEF35A /* Extensions */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8EE309702DD612DB00FEF35A /* Views */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -75,7 +104,17 @@
 		8EE3092F2DD5E8A100FEF35A = {
 			isa = PBXGroup;
 			children = (
-				8EE3093A2DD5E8A100FEF35A /* BudgetBirdie */,
+				8EE309BD2DD65A2300FEF35A /* DataModels.swift */,
+				8EE309B92DD654A800FEF35A /* ThemeManager.swift */,
+				8EE309B72DD6335D00FEF35A /* WelcomeView.swift */,
+				8EE309B12DD626F800FEF35A /* Assets.xcassets */,
+				8EE309772DD6142500FEF35A /* ContentView.swift */,
+				8EE3093B2DD5E8A100FEF35A /* BudgetBirdieApp.swift */,
+				8EE309412DD5E8A300FEF35A /* Persistence.swift */,
+				8EE309432DD5E8A300FEF35A /* BudgetBirdie.xcdatamodeld */,
+				8EE3096D2DD612AD00FEF35A /* Models  */,
+				8EE3096E2DD612C200FEF35A /* Extensions */,
+				8EE309702DD612DB00FEF35A /* Views */,
 				8EE3094D2DD5E8A400FEF35A /* BudgetBirdieTests */,
 				8EE309572DD5E8A400FEF35A /* BudgetBirdieUITests */,
 				8EE309392DD5E8A100FEF35A /* Products */,
@@ -108,7 +147,9 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				8EE3093A2DD5E8A100FEF35A /* BudgetBirdie */,
+				8EE3096D2DD612AD00FEF35A /* Models  */,
+				8EE3096E2DD612C200FEF35A /* Extensions */,
+				8EE309702DD612DB00FEF35A /* Views */,
 			);
 			name = BudgetBirdie;
 			packageProductDependencies = (
@@ -212,6 +253,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EE309B22DD626F800FEF35A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +278,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EE309422DD5E8A300FEF35A /* Persistence.swift in Sources */,
+				8EE309BE2DD65A2300FEF35A /* DataModels.swift in Sources */,
+				8EE3093C2DD5E8A100FEF35A /* BudgetBirdieApp.swift in Sources */,
+				8EE309B82DD6335D00FEF35A /* WelcomeView.swift in Sources */,
+				8EE309BA2DD654A800FEF35A /* ThemeManager.swift in Sources */,
+				8EE309782DD6142500FEF35A /* ContentView.swift in Sources */,
+				8EE309452DD5E8A300FEF35A /* BudgetBirdie.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,6 +599,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8EE309432DD5E8A300FEF35A /* BudgetBirdie.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8EE309442DD5E8A300FEF35A /* BudgetBirdie.xcdatamodel */,
+			);
+			currentVersion = 8EE309442DD5E8A300FEF35A /* BudgetBirdie.xcdatamodel */;
+			path = BudgetBirdie.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8EE309302DD5E8A100FEF35A /* Project object */;
 }

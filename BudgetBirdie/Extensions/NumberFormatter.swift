@@ -1,8 +1,10 @@
-//
-//  NumberFormatter.swift
-//  BudgetBirdie
-//
-//  Created by Erfanur on 15/5/2025.
-//
-
 import Foundation
+
+extension NumberFormatter {
+    static let currency: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.locale = Locale.current
+        return formatter
+    }()
+}

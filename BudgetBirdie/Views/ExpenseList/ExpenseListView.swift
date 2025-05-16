@@ -1,73 +1,143 @@
 import SwiftUI
-import CoreData
 
 struct ExpenseListView: View {
-    @Environment(\ .managedObjectContext) private var viewContext
-
+    @Environment(\.managedObjectContext) private var viewContext
+    @State private var showingAddExpense = false
+    @State private var searchText = ""
+    @State private var showingConfirmation = false
+    @State private var expenseToDelete: Expense? = nil
+    
     @FetchRequest(
-        entity: Expense.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \ Expense.date, ascending: false)]
-    ) private var expenses: FetchedResults<Expense>
-
-    @State private var showingAddSheet = false
-
+        sortDescriptors: [NSSortDescriptor(keyPath: \Expense.date, ascending: false)],
+        animation: .default)
+    private var expenses: FetchedResults<Expense>
+    
+    var filteredExpenses: [Expense] {
+        if searchText.isEmpty {
+            return Array(expenses)
+        } else {
+            return expenses.filter { expense in
+                let categoryMatch = expense.category?.lowercased().contains(searchText.lowercased()) ?? false
+                let noteMatch = expense.note?.lowercased().contains(searchText.lowercased()) ?? false
+                return categoryMatch || noteMatch
+            }
+        }
+    }
+    
     var body: some View {
         NavigationView {
-            List {
-                ForEach(expenses) { expense in
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text(expense.category ?? "Unknown")
-                                .font(.headline)
-                            if let note = expense.note {
-                                Text(note)
-                                    .font(.subheadline)
-                                    .foregroundColor(.secondary)
+            ZStack {
+                // Background
+                BudgetBirdieTheme.backgroundBlue
+                    .edgesIgnoringSafeArea(.all)
+                
+                VStack(spacing: 0) {
+                    // Enhanced header
+                    VStack(spacing: 10) {
+                        HStack {
+                            Image(systemName: "bird.fill")
+                                .font(.title)
+                                .foregroundColor(BudgetBirdieTheme.primaryBlue)
+                            
+                            Text("My Expenses")
+                                .font(.title.bold())
+                                .foregroundColor(BudgetBirdieTheme.primaryBlue)
+                            
+                            Spacer()
+                            
+                            // Add button in header for better visibility
+                            Button {
+                                showingAddExpense = true
+                            } label: {
+                                HStack {
+                                    Image(systemName: "plus.circle.fill")
+                                    Text("Add")
+                                }
+                                .padding(8)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .fill(BudgetBirdieTheme.primaryBlue)
+                                )
+                                .foregroundColor(.white)
                             }
                         }
-                        Spacer()
-                        VStack(alignment: .trailing) {
-                            Text("$\(expense.amount as Decimal? ?? 0, specifier: "%.2f")")
-                            Text(expense.date!, style: .date)
-                                .font(.caption)
-                                .foregroundColor(.secondary)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 15)
+                                .fill(Color.white)
+                                .shadow(color: Color.black.opacity(0.08), radius: 5, x: 0, y: 2)
+                        )
+                        .padding(.horizontal)
+                        
+                        // Search bar with themed styling
+                        if #available(iOS 15.0, *) {
+                            HStack {
+                                Image(systemName: "magnifyingglass")
+                                    .foregroundColor(.secondary)
+                                TextField("Search expenses", text: $searchText)
+                            }
+                            .padding(10)
+                            .background(Color.white)
+                            .cornerRadius(10)
+                            .padding(.horizontal)
                         }
                     }
-                }
-                .onDelete(perform: deleteExpenses)
-            }
-            .navigationTitle("Expenses")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        showingAddSheet.toggle()
-                    } label: {
-                        Image(systemName: "plus")
+                    .padding(.top)
+                    
+                    // Enhanced expense list
+                    ScrollView {
+                        LazyVStack(spacing: 12) {
+                            ForEach(filteredExpenses) { expense in
+                                NavigationLink(destination: ExpenseDetailView(expense: expense)) {
+                                    EnhancedExpenseRowView(expense: expense)
+                                }
+                                .buttonStyle(PlainButtonStyle())
+                                .contextMenu {
+                                    Button(role: .destructive) {
+                                        expenseToDelete = expense
+                                        showingConfirmation = true
+                                    } label: {
+                                        Label("Delete", systemImage: "trash")
+                                    }
+                                }
+                            }
+                            
+                            // Add some padding at bottom for comfort
+                            Color.clear.frame(height: 20)
+                        }
+                        .padding()
                     }
                 }
             }
-            .sheet(isPresented: $showingAddSheet) {
+            .navigationBarHidden(true)
+            .sheet(isPresented: $showingAddExpense) {
+                // Use the new BalancedAddExpenseView instead
                 AddExpenseView()
-                    .environment(\ .managedObjectContext, viewContext)
+            }
+            .alert("Delete Expense", isPresented: $showingConfirmation) {
+                Button("Cancel", role: .cancel) {}
+                Button("Delete", role: .destructive) {
+                    if let expense = expenseToDelete {
+                        deleteExpense(expense)
+                    }
+                }
+            } message: {
+                Text("Are you sure you want to delete this expense?")
             }
         }
     }
-
-    private func deleteExpenses(offsets: IndexSet) {
+    
+    private func deleteExpense(_ expense: Expense) {
         withAnimation {
-            offsets.map { expenses[$0] }.forEach(viewContext.delete)
-            saveContext()
-        }
-    }
-
-    private func saveContext() {
-        do {
-            try viewContext.save()
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            viewContext.delete(expense)
+            
+            do {
+                try viewContext.save()
+            } catch {
+                let nsError = error as NSError
+                print("Error deleting expense: \(nsError), \(nsError.userInfo)")
+            }
         }
     }
 }
-
 
